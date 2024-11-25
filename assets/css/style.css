@@ -40,6 +40,11 @@ p, a, li, span {
     border-radius: 4px;
 }
 
+/* Buttons */
+.game-btn {
+    border: 2px solid #ff8400;
+}
+
 /* Results */
 #resultsBox {
     border: 2px solid #ff8400;
