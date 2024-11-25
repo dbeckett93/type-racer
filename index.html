@@ -44,27 +44,33 @@
 </section>
 
 <section id="game area">
-<div class="container mt-4"></div>
-    <div class="input-group mb-3">
-        <label class="input-group-text" for="difficultySelect">Select Difficulty</label>
-        <select class="form-select" id="difficultySelect">
-            <option value="easy">Easy</option>
-            <option value="normal">Normal</option>
-            <option value="hard">Hard</option>
-        </select>
-    </div>
-    <p>Test your typing speed by typing the text shown below:</p>
-    <textarea class="form-control mb-3" id="typingArea" rows="5" placeholder="Click the start button to begin the test"></textarea>
-    <div class="d-flex justify-content-between mb-3">
-        <button class="btn btn-success" id="startButton">Start</button>
-        <button class="btn btn-danger" id="stopButton">Stop</button>
-        <button class="btn btn-warning" id="retryButton">Retry</button>
-    </div>
-    <div id="resultsBox" class="border p-3">
-        <h2>Results</h2>
-        <p>Difficulty Level: <span id="resultDifficulty"></span></p>
-        <p>Time: <span id="resultTime"></span></p>
-        <p>Words Per Minute (WPM): <span id="resultWPM"></span></p>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="difficultySelect">Select Difficulty</label>
+                <select class="form-select" id="difficultySelect">
+                    <option value="easy">Easy</option>
+                    <option value="normal">Normal</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <p>Test your typing speed by typing the text shown below:</p>
+            <textarea class="form-control mb-3" id="typingArea" rows="5" placeholder="Click the start button to begin the test"></textarea>
+            <div class="d-flex justify-content-center mb-3">
+                <button class="btn btn-success mx-2" id="startButton">Start</button>
+                <button class="btn btn-danger mx-2" id="stopButton">Stop</button>
+                <button class="btn btn-warning mx-2" id="retryButton">Retry</button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div id="resultsBox" class="border p-3 mx-3">
+                <h2>Results</h2>
+                <p>Difficulty Level: <span id="resultDifficulty"></span></p>
+                <p>Time: <span id="resultTime"></span></p>
+                <p>Words Per Minute (WPM): <span id="resultWPM"></span></p>
+            </div>
+        </div>
     </div>
 </div>
 </section>
