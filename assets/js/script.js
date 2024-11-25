@@ -163,8 +163,25 @@ function retryGame() {
 
 // Function to check the input
 function checkInput() {
-    let typedWords = typingArea.value;
-    if (typedWords === generatedWords) {
+    let typedWords = typingArea.value.trim().split(' ');
+    let generatedWordsArray = generatedWords.split(' ');
+
+    // Create a new array to hold the colored words
+    let coloredWords = generatedWordsArray.map((word, index) => {
+        if (typedWords[index] === word) {
+            return `<span style="color: blue;">${word}</span>`;
+        } else if (typedWords[index] !== undefined) {
+            return `<span style="color: red;">${word}</span>`;
+        } else {
+            return word;
+        }
+    });
+
+    // Join the colored words into a single string and display them
+    inputLabel.innerHTML = coloredWords.join(' ');
+
+    // Check if the entire input matches the generated words
+    if (typedWords.join(' ') === generatedWords) {
         stopGame();
     }
 }
