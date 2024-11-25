@@ -28,6 +28,7 @@ stopButton.addEventListener('click', stopGame);
 retryButton.addEventListener('click', retryGame);
 typingArea.addEventListener('input', checkInput);
 
+// Keyboard shortcuts to start and stop the game
 document.addEventListener('keydown', function(event) {
     if ((event.code === 'Space' || event.code === 'Enter') && gameState === 'off') {
         event.preventDefault();
@@ -36,7 +37,13 @@ document.addEventListener('keydown', function(event) {
     } else if (event.code === 'Escape' && gameState === 'on') {
         event.preventDefault();
         typingArea.value = "";
-        stopGame();
+        gameState = "off";
+        typingArea.disabled = true;
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        retryButton.disabled = false;
+        difficultySelector.disabled = false;
+        typingArea.placeholder = "";
     }
 });
 
@@ -97,6 +104,11 @@ function startGame() {
     stopButton.disabled = false;
     retryButton.disabled = true;
     difficultySelector.disabled = true;
+
+    // Reset the results
+    resultDifficulty.textContent = ""
+    resultTime.textContent = "";
+    resultWPM.textContent = "";
 
     // Start the timer
     startTime = new Date();
