@@ -28,6 +28,12 @@ p, a, li, span {
     font-style: strong;
 }
 
+#instructions-modal .modal-content, .modal-body {
+    background-color: #ff8400;
+    color: white;
+    font-style: strong;
+}
+
 /* Game Area */
 #input-label {
     font-size: 120%;
