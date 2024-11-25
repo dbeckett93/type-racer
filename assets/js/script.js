@@ -8,12 +8,15 @@ let startButton = document.getElementById('start-button');
 let stopButton = document.getElementById('stop-button');
 // Retry button
 let retryButton = document.getElementById('retry-button');
+// Difficulty selector
+let difficultySelector = document.getElementById('difficulty-select');
 
 // Event Listeners
 startButton.addEventListener('click', startGame);
 stopButton.addEventListener('click', stopGame);
 retryButton.addEventListener('click', retryGame);
 typingArea.addEventListener('input', checkInput);
+difficultySelector.addEventListener('change', changeDifficulty);
 
 
 // Function to generate a random string for the user to type. No more than ten words at a time.
