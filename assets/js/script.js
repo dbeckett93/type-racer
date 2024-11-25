@@ -30,7 +30,7 @@ typingArea.addEventListener('input', checkInput);
 
 // Keyboard shortcuts to start and stop the game
 document.addEventListener('keydown', function(event) {
-    if ((event.code === 'Space' || event.code === 'Enter') && gameState === 'off') {
+    if ((event.code === 'Space' || (event.code === 'Enter' && !event.altKey)) && gameState === 'off') {
         event.preventDefault();
         typingArea.value = "";
         startGame();
@@ -44,6 +44,9 @@ document.addEventListener('keydown', function(event) {
         retryButton.disabled = false;
         difficultySelector.disabled = false;
         typingArea.placeholder = "";
+    } else if (event.code === 'Enter' && event.altKey && gameState === 'off') {
+        event.preventDefault();
+        retryGame();
     }
 });
 
