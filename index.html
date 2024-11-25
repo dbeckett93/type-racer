@@ -15,6 +15,7 @@
 <body>
 <div class="container mt-5">
     <h1>TypeRacer</h1>
+    <section id="introduction">
     <div id="instructions">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructionsModal">
@@ -40,8 +41,9 @@
         </div>
     </div>
 </div>
+</section>
 
-
+<section id="game area">
 <div class="container mt-4"></div>
     <div class="input-group mb-3">
         <label class="input-group-text" for="difficultySelect">Select Difficulty</label>
@@ -64,7 +66,9 @@
         <p>Words Per Minute (WPM): <span id="resultWPM"></span></p>
     </div>
 </div>
-    <!-- Bootstrap JS and dependencies -->
+</section>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
