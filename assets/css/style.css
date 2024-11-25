@@ -1,0 +1,15 @@
+/* Google Fonts */
+/* Alegreya */
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Oswald:wght@200..700&display=swap');
+/* Nunito */
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&display=swap');
+
+/* General Styles */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Alegreya', serif;
+}
+
+p, a, li, span {
+    font-family: 'Nunito', sans-serif;
+}
