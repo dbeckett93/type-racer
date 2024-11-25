@@ -16,11 +16,17 @@ let difficultySelector = document.getElementById('difficulty-select');
 let resultDifficulty = document.getElementById('resultDifficulty');
 let resultTime = document.getElementById('resultTime');
 let resultWPM = document.getElementById('resultWPM');
+let bestEasyElement = document.getElementById('best-result-easy');
+let bestNormalElement = document.getElementById('best-result-normal');
+let bestHardElement = document.getElementById('best-result-hard');
 
 // Global variables
 let generatedWords = "";
 let startTime;
 let endTime;
+let bestEasy = 0;
+let bestNormal = 0;
+let bestHard = 0;
 
 // Event Listeners
 startButton.addEventListener('click', startGame);
@@ -135,12 +141,24 @@ function stopGame() {
 
     // Calculate WPM
     let wordCount = generatedWords.split(' ').length;
-    let wpm = (wordCount / timeTaken) * 60;
+    let wpm = (generatedWords.split(' ').length / (timeTaken / 60));
 
     // Display results
     resultDifficulty.textContent = difficultySelector.value;
     resultTime.textContent = timeTaken.toFixed(2) + " seconds";
     resultWPM.textContent = wpm.toFixed(2) + " WPM";
+
+    // Update best time for the selected difficulty
+    if (difficultySelector.value === "easy" && (bestEasy === 0 || timeTaken < bestEasy)) {
+        bestEasy = timeTaken;
+        bestEasyElement.textContent = bestEasy.toFixed(2) + " seconds (" + wpm.toFixed(2) + " WPM)";
+    } else if (difficultySelector.value === "normal" && (bestNormal === 0 || timeTaken < bestNormal)) {
+        bestNormal = timeTaken;
+        bestNormalElement.textContent = bestNormal.toFixed(2) + " seconds (" + wpm.toFixed(2) + " WPM)";
+    } else if (difficultySelector.value === "hard" && (bestHard === 0 || timeTaken < bestHard)) {
+        bestHard = timeTaken;
+        bestHardElement.textContent = bestHard.toFixed(2) + " seconds (" + wpm.toFixed(2) + " WPM)";
+    }
 }
 
 // Function to retry the game
