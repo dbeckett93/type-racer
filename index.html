@@ -55,7 +55,10 @@
                     <option value="hard">Hard</option>
                 </select>
             </div>
-            <p>Test your typing speed by typing the text shown below:</p>
+            <p id="input-label">Test your typing speed by typing the text shown below:</p>
+            <div class="py-3 mb-3 outline">
+                <span id="gameText" class="ps-3 d-block">The quick brown fox jumps over the lazy dog.</span>
+            </div>
             <textarea class="form-control mb-3" id="typingArea" rows="5" placeholder="Click the start button to begin the test"></textarea>
             <div class="d-flex justify-content-center mb-3">
                 <button class="btn btn-success mx-2" id="startButton">Start</button>

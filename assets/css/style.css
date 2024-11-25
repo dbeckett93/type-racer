@@ -27,3 +27,15 @@ p, a, li, span {
     border: none;
     font-style: strong;
 }
+
+/* Game Area */
+#input-label {
+    font-size: 120%;
+    font-style: strong;
+}
+
+.outline {
+    border: 1px solid #eee;
+    padding: 5px;
+    border-radius: 4px;
+}
