@@ -27,21 +27,50 @@ if (gameState === "off") {
     difficultySelector.disabled = false;
 }
 
-// Function to generate a random string for the user to type. No more than ten words at a time.
-// Using the API from https://random-word.ryanrk.com/
-async function generateRandomString() {
+// Triggered by the game start function. Diffculties are set by the user in the dropdown menu.
+function initialise() {
+
+    let wordCount = 0;
+    let wordLength = 0;
+
+    if (difficultySelector.value === "easy") {
+        wordCount = 4;
+        wordLength = 4;
+
+        generateRandomString(wordCount, wordLength);
+
+    } else if (difficultySelector.value === "normal") {
+        wordCount = 7;
+        wordLength = 8;
+
+        generateRandomString(wordCount, wordLength);
+
+    } else if (difficultySelector.value === "hard") {
+        wordCount = 10;
+        wordLength = 12;
+
+        generateRandomString(wordCount, wordLength);
+    }
+
+    // Nested Function to generate a random string for the user to type. Number of words and max word length determined by the difficulty selected.
+    // Using the API from https://random-word.ryanrk.com/
+
+    async function generateRandomString(wordCount, wordLength) {
+
     try {
-        const response = await fetch('https://random-word.ryanrk.com/api/en/word/random/10');
+        const response = await fetch(`https://random-word.ryanrk.com/api/en/word/random/${wordCount}?maxlength=${wordLength}`);
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
         }
         let words = await response.json();
         words = words.join(' '); // Join the words into a single string
         console.log(words); // Log the generated string to the console
+        inputLabel.textContent = words;
         return words;
     } catch (error) {
         console.error('Error fetching random words:', error);
     }
+}
 }
 
 // Start game
@@ -53,9 +82,7 @@ function startGame() {
     startButton.disabled = true;
     stopButton.disabled = false;
     retryButton.disabled = true;
-    generateRandomString().then(words => {
-        inputLabel.textContent = words;
-    });
+    initialise();
 }
 
 // Stop game
@@ -84,4 +111,4 @@ function checkInput() {
     }
 }
 
-
+// Results
