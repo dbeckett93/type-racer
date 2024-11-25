@@ -13,8 +13,15 @@ let retryButton = document.getElementById('retry-button');
 // Difficulty selector
 let difficultySelector = document.getElementById('difficulty-select');
 
-// Global variable to store the generated words
+// Results elements
+let resultDifficulty = document.getElementById('resultDifficulty');
+let resultTime = document.getElementById('resultTime');
+let resultWPM = document.getElementById('resultWPM');
+
+// Global variables
 let generatedWords = "";
+let startTime;
+let endTime;
 
 // Event Listeners
 startButton.addEventListener('click', startGame);
@@ -22,8 +29,21 @@ stopButton.addEventListener('click', stopGame);
 retryButton.addEventListener('click', retryGame);
 typingArea.addEventListener('input', checkInput);
 
+document.addEventListener('keydown', function(event) {
+    if ((event.code === 'Space' || event.code === 'Enter') && gameState === 'off') {
+        event.preventDefault();
+        typingArea.value = "";
+        startGame();
+    } else if (event.code === 'Escape' && gameState === 'on') {
+        event.preventDefault();
+        typingArea.value = "";
+        stopGame();
+    }
+});
+
 // Game off by default
 if (gameState === "off") {
+    typingArea.value = "";
     typingArea.disabled = true;
     stopButton.disabled = true;
     retryButton.disabled = true;
@@ -78,6 +98,11 @@ function startGame() {
     startButton.disabled = true;
     stopButton.disabled = false;
     retryButton.disabled = true;
+    difficultySelector.disabled = true;
+
+    // Start the timer
+    startTime = new Date();
+
     initialise();
 }
 
@@ -88,7 +113,21 @@ function stopGame() {
     startButton.disabled = false;
     stopButton.disabled = true;
     retryButton.disabled = false;
+    difficultySelector.disabled = false;
     typingArea.placeholder = "";
+
+    // Stop the timer
+    endTime = new Date();
+    let timeTaken = (endTime - startTime) / 1000; // Time in seconds
+
+    // Calculate WPM
+    let wordCount = generatedWords.split(' ').length;
+    let wpm = (wordCount / timeTaken) * 60;
+
+    // Display results
+    resultDifficulty.textContent = difficultySelector.value.charAt(0).toUpperCase() + difficultySelector.value.slice(1);
+    resultTime.textContent = timeTaken.toFixed(2) + " seconds";
+    resultWPM.textContent = wpm.toFixed(2);
 }
 
 // Function to retry the game
@@ -105,5 +144,3 @@ function checkInput() {
         stopGame();
     }
 }
-
-// Results
