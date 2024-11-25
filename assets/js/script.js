@@ -1,4 +1,3 @@
-// Game state, defaults to off and is controlled using the buttons beneath the game text input box
 let gameState = "off";
 // Input label that displays the random string of words
 let inputLabel = document.getElementById('game-text');
@@ -43,7 +42,6 @@ document.addEventListener('keydown', function(event) {
 
 // Game off by default
 if (gameState === "off") {
-    typingArea.value = "";
     typingArea.disabled = true;
     stopButton.disabled = true;
     retryButton.disabled = true;
@@ -77,7 +75,7 @@ function initialise() {
         wordLength = 4;
     } else if (difficultySelector.value === "normal") {
         wordCount = 7;
-        wordLength = 8;
+        wordLength = 6;
     } else if (difficultySelector.value === "hard") {
         wordCount = 10;
         wordLength = 12;
@@ -125,16 +123,27 @@ function stopGame() {
     let wpm = (wordCount / timeTaken) * 60;
 
     // Display results
-    resultDifficulty.textContent = difficultySelector.value.charAt(0).toUpperCase() + difficultySelector.value.slice(1);
+    resultDifficulty.textContent = difficultySelector.value;
     resultTime.textContent = timeTaken.toFixed(2) + " seconds";
-    resultWPM.textContent = wpm.toFixed(2);
+    resultWPM.textContent = wpm.toFixed(2) + " WPM";
 }
 
 // Function to retry the game
 function retryGame() {
+    gameState = "on";
     typingArea.value = "";
-    typingArea.placeholder = "";
-    startGame();
+    typingArea.disabled = false;
+    typingArea.focus();
+    startButton.disabled = true;
+    stopButton.disabled = false;
+    retryButton.disabled = true;
+    difficultySelector.disabled = true;
+
+    // Start the timer
+    startTime = new Date();
+
+    // Use the same words as before
+    inputLabel.textContent = generatedWords;
 }
 
 // Function to check the input
